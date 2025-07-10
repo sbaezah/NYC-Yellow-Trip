@@ -219,3 +219,83 @@ WHERE
 ZL.LOCATIONID IS NOT NULL
 ORDER BY ZL.LOCATIONID
 ;
+
+
+/* 
+DIM_VENDOR
+This table contains the vendor dimension, which includes information about the taxi vendors.
+*/
+
+CREATE OR REPLACE TABLE DIM_VENDOR (
+    VENDORID             NUMBER(38,0) NOT NULL PRIMARY KEY,
+    VENDOR_NAME          VARCHAR(150) NOT NULL,
+    VENDOR_SHORT_NAME    VARCHAR(150) NOT NULL
+    );
+
+
+
+INSERT INTO DIM_VENDOR (
+    VENDORID,
+    VENDOR_NAME,
+    VENDOR_SHORT_NAME
+)
+
+  VALUES
+    (1, 'Creative Mobile Technologies, LLC', 'Creative'),
+    (2, ' Curb Mobility, LLC', 'Curb'),
+    (6, 'Myle Technologies Inc', 'Myle'),
+    (7, 'Helix', 'Helix'),
+    (99, 'UNKNOWN/NULL', 'UNKNOWN/NULL');
+
+
+/*
+DIM_RATECODE
+This table contains the rate code dimension, which includes information about the taxi rates.
+ */
+
+ CREATE OR REPLACE TABLE DIM_RATECODE (
+    RATECODE             NUMBER(38,0) NOT NULL PRIMARY KEY,
+    RATECODE_NAME        VARCHAR(150) NOT NULL
+    );
+
+
+
+INSERT INTO DIM_RATECODE (
+    RATECODEID,
+    RATECODE_NAME
+)
+
+  VALUES
+    (1, 'Standard rate'),
+    (2, 'JFK'),
+    (3, 'Newark'),
+    (4, 'Nassau or Westchester'),
+    (5, 'Negotiated fare'),
+    (6, 'Group ride'),
+    (99, 'Null/unknown');
+
+
+/* 
+DIM_PAYMENT_TYPE
+This table contains the payment type dimension, which includes information about the payment methods used in taxi rides.
+*/
+CREATE OR REPLACE TABLE DIM_PAYMENT_TYPE (
+    PAYMENT_TYPE_ID      NUMBER(38,0) NOT NULL PRIMARY KEY,
+    PAYMENT_TYPE_NAME    VARCHAR(150) NOT NULL
+    );
+
+
+
+INSERT INTO DIM_PAYMENT_TYPE (
+    PAYMENT_TYPE_ID,
+    PAYMENT_TYPE_NAME
+)
+
+  VALUES
+    (0, 'Flex Fare trip'),
+    (1, 'Credit card'),
+    (2, 'Cash'),
+    (3, 'No charge'),
+    (4, 'Dispute'),
+    (5, 'Unknown'),
+    (6, 'Voided trip');
